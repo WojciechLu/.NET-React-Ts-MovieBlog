@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32210.238
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieBlog-Backend", "MovieBlog-Backend\MovieBlog-Backend.csproj", "{92605380-E48C-42D3-996D-2CF02C33BE2D}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "MovieBlog-Frontend", "..\MovieBlog-Frontend\MovieBlog-Frontend.esproj", "{5EFB5513-5396-4FDD-A730-7FB856C2306E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{92605380-E48C-42D3-996D-2CF02C33BE2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92605380-E48C-42D3-996D-2CF02C33BE2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92605380-E48C-42D3-996D-2CF02C33BE2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92605380-E48C-42D3-996D-2CF02C33BE2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFB5513-5396-4FDD-A730-7FB856C2306E}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FDA2A726-5138-4803-86E8-D14655AE2F55}
+	EndGlobalSection
+EndGlobal

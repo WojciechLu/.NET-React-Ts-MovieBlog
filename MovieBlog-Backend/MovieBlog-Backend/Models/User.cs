@@ -3,7 +3,7 @@ using MovieBlog_Backend.Entities;
 
 namespace MovieBlog_Backend.Models
 {
-    public class User : IdentityUser
+    public class User
     {
         public int Id { get; set; }
         public string Email { get; set; }

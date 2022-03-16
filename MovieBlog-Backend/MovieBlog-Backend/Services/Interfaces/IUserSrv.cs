@@ -1,6 +1,11 @@
-﻿namespace MovieBlog_Backend.Services.Interfaces
+﻿using MovieBlog_Backend.Models;
+
+namespace MovieBlog_Backend.Services.Interfaces
 {
-    public class IUserSrv
+    public interface IUserSrv
     {
+        User GetAllUsers();
+        ResponseDTO EditUser(User user);
+        ResponseDTO DeleteUser(User user);
     }
 }

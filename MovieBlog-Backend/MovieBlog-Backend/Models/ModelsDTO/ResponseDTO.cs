@@ -1,4 +1,4 @@
-﻿namespace MovieBlog_Backend.Models
+﻿namespace MovieBlog_Backend.Models.ModelsDTO
 {
     public class ResponseDTO
     {

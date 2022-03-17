@@ -22,7 +22,7 @@ namespace MovieBlog_Backend.Controllers
                 var user = dbContext.Users.Where(u => u.Email == newUser.Email).FirstOrDefault();
                 if (user == null)
                 {
-                    var registeredUser = new User
+                    var registeredUser = new Entities.User
                     {
                         Email = newUser.Email,
                         Id = newUser.Id,

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MovieBlog_Backend.Data;
 using MovieBlog_Backend.Entities;
 using MovieBlog_Backend.Models.ModelsDTO;
 

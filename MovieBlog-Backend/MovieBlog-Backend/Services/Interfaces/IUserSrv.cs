@@ -5,8 +5,8 @@ namespace MovieBlog_Backend.Services.Interfaces
 {
     public interface IUserSrv
     {
-        User GetAllUsers();
-        ResponseDTO EditUser(User user);
-        ResponseDTO DeleteUser(User user);
+        UsersDTO GetAllUsers();
+        ResponseDTO EditUser(UserDTO user);
+        ResponseDTO DeleteUser(UserDTO user);
     }
 }

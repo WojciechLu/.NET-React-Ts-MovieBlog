@@ -1,4 +1,6 @@
 using MovieBlog_Backend.Services;
+using MovieBlog_Backend.Services.Implementations;
+using MovieBlog_Backend.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,8 +9,9 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUserSrv, UserSrv>();
 builder.Services.AddDependency(builder.Configuration);
-
+builder.Services.AddMvc();
 
 var app = builder.Build();
 
@@ -19,7 +22,6 @@ if (!app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 
 }
-
 
 /*app.UseSwaggerUI();
 */

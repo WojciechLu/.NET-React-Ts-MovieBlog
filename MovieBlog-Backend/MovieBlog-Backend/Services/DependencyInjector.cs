@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MovieBlog_Backend.Entities;
+using MovieBlog_Backend.Data;
 using MovieBlog_Backend.Services.Implementations;
 using MovieBlog_Backend.Services.Interfaces;
 

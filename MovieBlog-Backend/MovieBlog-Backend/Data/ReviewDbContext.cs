@@ -1,6 +1,5 @@
-﻿/*using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using MovieBlog_Backend.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using MovieBlog_Backend.Entities;
 using MovieBlog_Backend.Models.ModelConfiguration;
 
 namespace MovieBlog_Backend.Data
@@ -10,10 +9,12 @@ namespace MovieBlog_Backend.Data
         public ReviewDbContext(DbContextOptions<ReviewDbContext> options)
             : base(options)
         { }
-        public DbSet<ListToWatch> ToWatch { get; set; }
-        public DbSet<Movie> Movies { get; set; }
-        public DbSet<Review> Reviews { get; set; }
+
+        private string _connectionString = "Server=localhost\\SQLEXPRESS;Database=MovieBlogDb;Trusted_Connection=True;";
         public DbSet<User> Users { get; set; }
+        public DbSet<Review> Reviews { get; set; }
+        public DbSet<Movie> Movies { get; set; }
+        public DbSet<ListToWatch> ToWatch { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -23,10 +24,10 @@ namespace MovieBlog_Backend.Data
             modelBuilder.ApplyConfiguration(new UserConfiguration());
             base.OnModelCreating(modelBuilder);
         }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=MovieBlogDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(_connectionString);
         }
     }
 }
-*/

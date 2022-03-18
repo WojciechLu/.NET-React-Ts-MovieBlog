@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieBlog_Backend.Data;
-using MovieBlog_Backend.Entities;
+using MovieBlog_Backend.Models;
 using MovieBlog_Backend.Models.ModelsDTO;
 
 namespace MovieBlog_Backend.Controllers
@@ -23,7 +23,7 @@ namespace MovieBlog_Backend.Controllers
                 var user = dbContext.Users.Where(u => u.Email == newUser.Email).FirstOrDefault();
                 if (user == null)
                 {
-                    var registeredUser = new Entities.User
+                    var registeredUser = new User
                     {
                         Email = newUser.Email,
                         Id = newUser.Id,

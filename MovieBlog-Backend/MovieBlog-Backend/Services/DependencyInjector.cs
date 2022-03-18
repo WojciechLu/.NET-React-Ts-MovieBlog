@@ -12,5 +12,6 @@ namespace MovieBlog_Backend.Services
             var connectionString = configuration.GetConnectionString("DefaultConnection");
             serviceCollection.AddDbContext<ReviewDbContext>(x => x.UseSqlServer(connectionString));
             serviceCollection.AddScoped<IUserSrv, UserSrv>();
+            serviceCollection.AddScoped<IMovieSrv, MovieSrv>();
         }
     }}

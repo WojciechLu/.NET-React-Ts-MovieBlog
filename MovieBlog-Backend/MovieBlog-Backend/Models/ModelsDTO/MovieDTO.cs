@@ -1,11 +1,10 @@
-﻿namespace MovieBlog_Backend.Entities
+﻿namespace MovieBlog_Backend.Models.ModelsDTO
 {
-    public class Movie
+    public class MovieDTO
     {
         public int Id { get; set; }
         public string Title { get; set; }
         public string Category { get; set; }
         public string Image { get; set; }
-        public IList<Review> Reviews { get; set; }
     }
 }

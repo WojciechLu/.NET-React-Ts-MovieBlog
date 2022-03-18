@@ -1,7 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using MovieBlog_Backend.Entities;
-
-namespace MovieBlog_Backend.Models
+﻿namespace MovieBlog_Backend.Models
 {
     public class User
     {

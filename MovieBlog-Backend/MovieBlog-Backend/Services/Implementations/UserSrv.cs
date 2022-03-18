@@ -67,7 +67,7 @@ namespace MovieBlog_Backend.Services.Implementations
             UsersDTO users = new UsersDTO();
             users.usersList = new List<UserDTO>();
 
-            foreach(Entities.User user in result)
+            foreach(User user in result)
             {
                 var userDTO = new UserDTO { Email = user.Email, Id = user.Id, Name = user.Name, Password = user.Password };
                 users.usersList.Add(userDTO);

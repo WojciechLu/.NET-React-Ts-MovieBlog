@@ -28,7 +28,8 @@ namespace MovieBlog_Backend.Controllers
                         Email = newUser.Email,
                         Id = newUser.Id,
                         Name = newUser.Name,
-                        Password = newUser.Password
+                        Password = newUser.Password,
+                        ToWatch = new ListToWatch { Id = newUser.Id }
                     };
                     dbContext.Users.Add(registeredUser);
                     dbContext.SaveChanges();

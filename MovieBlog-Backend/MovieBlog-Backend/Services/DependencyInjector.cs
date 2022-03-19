@@ -13,5 +13,6 @@ namespace MovieBlog_Backend.Services
             serviceCollection.AddDbContext<ReviewDbContext>(x => x.UseSqlServer(connectionString));
             serviceCollection.AddScoped<IUserSrv, UserSrv>();
             serviceCollection.AddScoped<IMovieSrv, MovieSrv>();
+            serviceCollection.AddScoped<IListToWatchSrv, ListToWatchSrv>();
         }
     }}

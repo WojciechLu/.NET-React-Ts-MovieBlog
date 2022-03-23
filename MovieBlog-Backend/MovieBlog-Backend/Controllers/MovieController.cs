@@ -50,5 +50,12 @@ namespace MovieBlog_Backend.Controllers
         {
             return Ok(movieSrv.DeleteMovie(movie));
         }
+
+        [HttpPut]
+        [Route("{movieID}/{userId}")]
+        public ActionResult AddMovieToList(int movieId, int userId)
+        {
+            return Ok(movieSrv.AddMovieToList(movieId, userId));
+        }
     }
 }

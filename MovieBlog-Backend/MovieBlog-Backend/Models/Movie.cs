@@ -7,5 +7,6 @@
         public string Category { get; set; }
         public string Image { get; set; }
         public IList<Review> Reviews { get; set; }
+        public IList<MovieList> MovieLists { get; set; }
     }
 }

@@ -15,6 +15,7 @@ namespace MovieBlog_Backend.Data
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<ListToWatch> ToWatch { get; set; }
+        public DbSet<MovieList> MoviesList { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -22,6 +23,7 @@ namespace MovieBlog_Backend.Data
             modelBuilder.ApplyConfiguration(new MovieConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new MovieListConfiguration());
             base.OnModelCreating(modelBuilder);
         }
 

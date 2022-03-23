@@ -23,17 +23,25 @@ namespace MovieBlog_Backend.Controllers
                 var user = dbContext.Users.Where(u => u.Email == newUser.Email).FirstOrDefault();
                 if (user == null)
                 {
-                    var registeredUser = new User
+                    try
                     {
-                        Email = newUser.Email,
-                        Id = newUser.Id,
-                        Name = newUser.Name,
-                        Password = newUser.Password,
-                        ToWatch = new ListToWatch { Id = newUser.Id }
-                    };
-                    dbContext.Users.Add(registeredUser);
-                    dbContext.SaveChanges();
-                    return new ResponseDTO { Code = 200, Message = "Registered successfully", Status = "Success" };
+                        var registeredUser = new User
+                        {
+                            Email = newUser.Email,
+                            Id = newUser.Id,
+                            Name = newUser.Name,
+                            Password = newUser.Password
+                        };
+                        var newList = new ListToWatch() { Id = newUser.Id, Owner = registeredUser, OwnerId = registeredUser.Id};
+                        dbContext.Users.Add(registeredUser);
+                        dbContext.ToWatch.Add(newList);
+                        dbContext.SaveChanges();
+                        return new ResponseDTO { Code = 200, Message = "Registered successfully", Status = "Success" };
+                    }
+                    catch(Exception ex)
+                    {
+                        return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
+                    }
                 }
             }
             return new ResponseDTO { Code = 400, Message = "Error with register", Status = "Failed" };
@@ -44,7 +52,7 @@ namespace MovieBlog_Backend.Controllers
         {
             if(loginUser != null)
             {
-                var user = dbContext.Users.Where(u => u.Id == loginUser.Id).FirstOrDefault();
+                var user = dbContext.Users.Where(u => u.Email == loginUser.Email && u.Password == loginUser.Password).FirstOrDefault();
                 if(user != null)
                 {
                     return new ResponseDTO { Code = 200, Message = "Logged in successfully", Status = "Success" };

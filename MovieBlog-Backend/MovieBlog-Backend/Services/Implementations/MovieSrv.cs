@@ -18,11 +18,12 @@ namespace MovieBlog_Backend.Services.Implementations
             if(movie != null)
             {
                 var newMovie = context.Movies.FirstOrDefault(m => m.Id == movie.Id);
-                if(newMovie == null)
+                var newMovie2 = context.Movies.FirstOrDefault(m => m.Title == movie.Title);
+                if(newMovie == null && newMovie2 == null)
                 {
                     try
                     {
-                        var addMovie = new Movie() { Id = movie.Id, Category = movie.Category, Image = movie.Category, Title = movie.Title };
+                        var addMovie = new Movie() { Id = movie.Id, Category = movie.Category, Image = movie.Image, Title = movie.Title };
                         context.Movies.Add(addMovie);
                         context.SaveChanges();
 
@@ -128,6 +129,33 @@ namespace MovieBlog_Backend.Services.Implementations
                 }
             }
             return movies;
+        }
+        public ResponseDTO AddMovieToList(int movieId, int userId)
+        {
+            var list = context.ToWatch.FirstOrDefault(l => l.OwnerId == userId);
+            if(list != null)
+            {
+                var movieToAdd = context.Movies.FirstOrDefault(m => m.Id == movieId);
+                if(movieToAdd != null)
+                {
+                    try
+                    {
+                        if(list.Movies == null)
+                        {
+                            list.Movies = new List<Movie>();
+                        }
+                        list.Movies.Add(movieToAdd);
+                        context.SaveChanges();
+                        return new ResponseDTO { Code = 200, Message = "Added to watch", Status = "Success" };
+                    }
+                    catch(Exception ex)
+                    {
+                        return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
+                    }
+                }
+                else return new ResponseDTO { Code = 400, Message = "Movie with this id doesnt exist", Status = "Failed" };
+            }
+            else return new ResponseDTO { Code = 400, Message = "List with this owner id doesn't exist", Status = "Failed" };
         }
     }
 }

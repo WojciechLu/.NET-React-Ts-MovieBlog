@@ -24,17 +24,24 @@ namespace MovieBlog_Backend.Services.Implementations
             {
                 try
                 {
-                    var movieList = result.Movies.ToList();
+                    var movieList = context.MoviesList.FirstOrDefault(ml => ml.ListId == result.Id);
 
-                    MoviesDTO movies = new MoviesDTO();
-                    movies.moviesList = new List<MovieDTO>();
-
-                    foreach (Movie movie in movieList)
+                    if(movieList == null)
                     {
-                        var i = new MovieDTO { Id = movie.Id, Title = movie.Title, Category = movie.Category, Image = movie.Image };
-                        movies.moviesList.Add(i);
+                        return null;
                     }
-                    return movies;
+                    else
+                    {
+                        MoviesDTO movies = new MoviesDTO();
+                        movies.moviesList = new List<MovieDTO>();
+
+/*                        foreach (Movie movie in movieList)
+                        {
+                            var i = new MovieDTO { Id = movie.Id, Title = movie.Title, Category = movie.Category, Image = movie.Image };
+                            movies.moviesList.Add(i);
+                        }*/
+                        return movies;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -52,7 +59,7 @@ namespace MovieBlog_Backend.Services.Implementations
             }
             else
             {
-                try
+                /*try
                 {
                     var movieList = result.Movies.ToList();
 
@@ -72,7 +79,8 @@ namespace MovieBlog_Backend.Services.Implementations
                 catch(Exception ex)
                 {
                     return null;
-                }
+                }*/
+                return null;
             }
         }
 
@@ -85,7 +93,7 @@ namespace MovieBlog_Backend.Services.Implementations
             }
             else
             {
-                var movieToRemove = result.Movies.FirstOrDefault(m => m.Title == title);
+                /*var movieToRemove = result.Movies.FirstOrDefault(m => m.Title == title);
 
                 try
                 {
@@ -96,7 +104,8 @@ namespace MovieBlog_Backend.Services.Implementations
                 catch(Exception ex)
                 {
                     return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
-                }
+                }*/
+                return new ResponseDTO { Code = 400, Message = "Failed", Status = "Failed" };
             }
         }
     }

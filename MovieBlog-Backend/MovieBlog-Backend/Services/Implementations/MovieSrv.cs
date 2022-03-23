@@ -132,26 +132,24 @@ namespace MovieBlog_Backend.Services.Implementations
         }
         public ResponseDTO AddMovieToList(int movieId, int userId)
         {
+
             var list = context.ToWatch.FirstOrDefault(l => l.OwnerId == userId);
             if(list != null)
             {
                 var movieToAdd = context.Movies.FirstOrDefault(m => m.Id == movieId);
                 if(movieToAdd != null)
                 {
-                    try
+                    /*try
                     {
-                        if(list.Movies == null)
-                        {
-                            list.Movies = new List<Movie>();
-                        }
-                        list.Movies.Add(movieToAdd);
+                        var movieList = context.MoviesList.FirstOrDefault(ml => ml.ListId == list.Id);
                         context.SaveChanges();
                         return new ResponseDTO { Code = 200, Message = "Added to watch", Status = "Success" };
                     }
                     catch(Exception ex)
                     {
                         return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
-                    }
+                    }*/
+                    return new ResponseDTO { Code = 200, Message = "Added to watch", Status = "Success" };
                 }
                 else return new ResponseDTO { Code = 400, Message = "Movie with this id doesnt exist", Status = "Failed" };
             }

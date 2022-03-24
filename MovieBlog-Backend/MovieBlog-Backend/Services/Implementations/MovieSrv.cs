@@ -23,7 +23,15 @@ namespace MovieBlog_Backend.Services.Implementations
                 {
                     try
                     {
-                        var addMovie = new Movie() { Id = movie.Id, Category = movie.Category, Image = movie.Image, Title = movie.Title };
+                        var addMovie = new Movie()
+                        {
+                            Id = movie.Id,
+                            Category = movie.Category,
+                            Image = movie.Image,
+                            Title = movie.Title,
+                            MovieLists = new List<MovieList>(),
+                            Reviews = new List<Review>()
+                        };
                         context.Movies.Add(addMovie);
                         context.SaveChanges();
 
@@ -130,30 +138,6 @@ namespace MovieBlog_Backend.Services.Implementations
             }
             return movies;
         }
-        public ResponseDTO AddMovieToList(int movieId, int userId)
-        {
-
-            var list = context.ToWatch.FirstOrDefault(l => l.OwnerId == userId);
-            if(list != null)
-            {
-                var movieToAdd = context.Movies.FirstOrDefault(m => m.Id == movieId);
-                if(movieToAdd != null)
-                {
-                    /*try
-                    {
-                        var movieList = context.MoviesList.FirstOrDefault(ml => ml.ListId == list.Id);
-                        context.SaveChanges();
-                        return new ResponseDTO { Code = 200, Message = "Added to watch", Status = "Success" };
-                    }
-                    catch(Exception ex)
-                    {
-                        return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
-                    }*/
-                    return new ResponseDTO { Code = 200, Message = "Added to watch", Status = "Success" };
-                }
-                else return new ResponseDTO { Code = 400, Message = "Movie with this id doesnt exist", Status = "Failed" };
-            }
-            else return new ResponseDTO { Code = 400, Message = "List with this owner id doesn't exist", Status = "Failed" };
-        }
+        
     }
 }

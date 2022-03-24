@@ -30,9 +30,12 @@ namespace MovieBlog_Backend.Controllers
                             Email = newUser.Email,
                             Id = newUser.Id,
                             Name = newUser.Name,
-                            Password = newUser.Password
+                            Password = newUser.Password,
+                            IdListToWatch = newUser.Id,
+                            Reviews = new List<Review>()
                         };
-                        var newList = new ListToWatch() { Id = newUser.Id, Owner = registeredUser, OwnerId = registeredUser.Id};
+                        var newList = new ListToWatch() { Id = newUser.Id, Owner = registeredUser, OwnerId = registeredUser.Id, MoviesLists = new List<MovieList>() };
+                        registeredUser.ToWatch = newList;
                         dbContext.Users.Add(registeredUser);
                         dbContext.ToWatch.Add(newList);
                         dbContext.SaveChanges();

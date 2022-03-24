@@ -10,6 +10,5 @@ namespace MovieBlog_Backend.Services.Interfaces
         ResponseDTO AddMovie(MovieDTO movie);
         ResponseDTO EditMovie(MovieDTO movie);
         ResponseDTO DeleteMovie(MovieDTO movie);
-        ResponseDTO AddMovieToList(int movieId, int userId);
     }
 }

@@ -24,24 +24,20 @@ namespace MovieBlog_Backend.Services.Implementations
             {
                 try
                 {
-                    var movieList = context.MoviesList.FirstOrDefault(ml => ml.ListId == result.Id);
+                    MoviesDTO movies = new MoviesDTO();
+                    movies.moviesList = new List<MovieDTO>();
 
-                    if(movieList == null)
+                    var listResult = result.MoviesLists.ToList();
+                    foreach(var movie in listResult)
                     {
-                        return null;
-                    }
-                    else
-                    {
-                        MoviesDTO movies = new MoviesDTO();
-                        movies.moviesList = new List<MovieDTO>();
-
-/*                        foreach (Movie movie in movieList)
+                        var newMovie = context.Movies.FirstOrDefault(m => m.Id == movie.MovieId);
+                        if(newMovie != null)
                         {
-                            var i = new MovieDTO { Id = movie.Id, Title = movie.Title, Category = movie.Category, Image = movie.Image };
+                            var i = new MovieDTO { Id = newMovie.Id, Category = newMovie.Category, Title = newMovie.Title, Image = newMovie.Image };
                             movies.moviesList.Add(i);
-                        }*/
-                        return movies;
+                        }
                     }
+                    return movies;
                 }
                 catch (Exception ex)
                 {

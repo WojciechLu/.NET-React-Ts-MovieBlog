@@ -33,5 +33,11 @@ namespace MovieBlog_Backend.Controllers
         {
             return Ok(listToWatchSrv.GetMoviesByCategory(userId, category));
         }
+
+        [HttpGet]
+        public ActionResult GetAllLists()
+        {
+            return Ok(listToWatchSrv.GetAllLists());
+        }
     }
 }

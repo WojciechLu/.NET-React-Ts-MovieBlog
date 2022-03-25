@@ -1,4 +1,5 @@
-﻿using MovieBlog_Backend.Models.ModelsDTO;
+﻿using MovieBlog_Backend.Models;
+using MovieBlog_Backend.Models.ModelsDTO;
 
 namespace MovieBlog_Backend.Services.Interfaces
 {
@@ -7,5 +8,6 @@ namespace MovieBlog_Backend.Services.Interfaces
         ResponseDTO AddMovieToList(int movieId, int listId);
         ResponseDTO RemoveMovieFromList(int movieId, int listId);
         MoviesDTO GetMoviesFromList(int listId);
+        MovieLists GetMovieLists();
     }
 }

@@ -33,5 +33,12 @@ namespace MovieBlog_Backend.Controllers
         {
             return Ok(movieListSrv.GetMoviesFromList(userId));
         }
+
+        [HttpGet]
+        [Route("")]
+        public ActionResult GetMovieList()
+        {
+            return Ok(movieListSrv.GetMovieLists());
+        }
     }
 }

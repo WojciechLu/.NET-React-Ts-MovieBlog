@@ -7,5 +7,6 @@ namespace MovieBlog_Backend.Services.Interfaces
         ResponseDTO RemoveMovie(int userId, string title);
         MoviesDTO GetMovies(int userId);
         MoviesDTO GetMoviesByCategory(int userId, string category);
+        ListsToWatchDTO GetAllLists();
     }
 }

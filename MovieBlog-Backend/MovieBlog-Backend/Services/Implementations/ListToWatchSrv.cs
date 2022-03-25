@@ -104,5 +104,19 @@ namespace MovieBlog_Backend.Services.Implementations
                 return new ResponseDTO { Code = 400, Message = "Failed", Status = "Failed" };
             }
         }
+
+        public ListsToWatchDTO GetAllLists()
+        {
+            var result = context.ToWatch.ToList();
+            ListsToWatchDTO lists = new ListsToWatchDTO();
+            lists.listToWatch = new List<ListToWatchDTO>();
+
+            foreach(ListToWatch list in result)
+            {
+                var listDTO = new ListToWatchDTO { Id = list.Id, MoviesList = list.MoviesLists, OwnerId = list.OwnerId };
+                lists.listToWatch.Add(listDTO);
+            }
+            return lists;
+        }
     }
 }

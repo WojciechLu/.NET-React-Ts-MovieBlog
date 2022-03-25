@@ -15,15 +15,57 @@ namespace MovieBlog_Backend.Services.Implementations
 
         public ResponseDTO AddMovieToList(int movieId, int listId)
         {
-            var list = context.ToWatch.FirstOrDefault(l => l.Id == listId);
-            if (list != null)
+            var result = context.MoviesList.FirstOrDefault(ml => ml.ListId == listId || ml.MovieId == movieId);
+            var listToCheck = context.ToWatch.FirstOrDefault(t => t.Id == listId);
+            var movieToCheck = context.Movies.FirstOrDefault(m => m.Id == movieId);
+            if(listToCheck != null && movieToCheck != null)
             {
-                var movieToAdd = context.Movies.FirstOrDefault(m => m.Id == movieId);
+                try
+                {
+                    var list = context.MoviesList.FirstOrDefault(ml => ml.ListId == listId && ml.MovieId == movieId);
+                    if (list == null)
+                    {
+                        var newMovieList = new MovieList
+                        {
+                            List = listToCheck,
+                            ListId = listToCheck.Id,
+                            Movie = movieToCheck,
+                            MovieId = movieToCheck.Id
+                        };
+                        var listToUpdate = context.ToWatch.FirstOrDefault(l => l.Id == listId);
+                        if (listToUpdate.MoviesLists == null)
+                        {
+                            listToUpdate.MoviesLists = new List<MovieList>();
+                        }
+                        listToUpdate.MoviesLists.Add(newMovieList);
+
+                        var movieToUpdate = context.Movies.FirstOrDefault(m => m.Id == movieId);
+                        if (movieToUpdate.MovieLists == null)
+                        {
+                            movieToUpdate.MovieLists = new List<MovieList>();
+                        }
+                        movieToUpdate.MovieLists.Add(newMovieList);
+
+                        context.SaveChanges();
+                        return new ResponseDTO() { Code = 200, Message = "Added", Status = "Success" };
+                    }
+                    else return new ResponseDTO() { Code = 400, Message = "Movie is already added to list", Status = "Failed" };
+                }
+                catch(Exception ex)
+                {
+                    return new ResponseDTO { Code = 400, Message = ex.Message, Status = "Failed" };
+                }
+            } 
+            else return new ResponseDTO() { Code = 400, Message = "Not found movie or list with id", Status = "Failed" };
+            
+
+            /*if (list != null)
+            {
                 if (movieToAdd != null)
                 {
                     try
                     {
-                        if (context.MoviesList.FirstOrDefault(ml => ml.MovieId == movieToAdd.Id && ml.ListId == list.Id) != null)
+                        if (list != null)
                         {
                             return new ResponseDTO() { Code = 400, Message = "Movie is already added to list", Status = "Failed" };
                         }
@@ -31,21 +73,24 @@ namespace MovieBlog_Backend.Services.Implementations
                         {
                             var newMovieList = new MovieList
                             {
-                                List = list,
-                                ListId = list.Id,
+                                List = listToAdd,
+                                ListId = listToAdd.Id,
                                 Movie = movieToAdd,
                                 MovieId = movieToAdd.Id
                             };
-                            if(list.MoviesLists == null)
+
+                            if(listToAdd.MoviesLists == null)
                             {
-                                list.MoviesLists = new List<MovieList>();
+                                listToAdd.MoviesLists = new List<MovieList>();
                             }
-                            list.MoviesLists.Add(newMovieList);
+                            listToAdd.MoviesLists.Add(newMovieList);
+
                             if(movieToAdd.MovieLists == null)
                             {
                                 movieToAdd.MovieLists = new List<MovieList>();
                             }
                             movieToAdd.MovieLists.Add(newMovieList);
+
                             context.MoviesList.Add(newMovieList);
                             context.SaveChanges();
                         }
@@ -58,12 +103,13 @@ namespace MovieBlog_Backend.Services.Implementations
                 }
                 else return new ResponseDTO { Code = 400, Message = "Movie with this id doesnt exist", Status = "Failed" };
             }
-            else return new ResponseDTO { Code = 400, Message = "List with this owner id doesn't exist", Status = "Failed" };
+            else return new ResponseDTO { Code = 400, Message = "List with this owner id doesn't exist", Status = "Failed" };*/
         }
 
         public MoviesDTO GetMoviesFromList(int listId)
         {
-            var operatingList = context.ToWatch.FirstOrDefault(l => l.Id == listId);
+            var result = context.MoviesList.FirstOrDefault(ml => ml.ListId == listId);
+            var operatingList = context.ToWatch.FirstOrDefault(t => t.Id == result.ListId);
             if (operatingList != null)
             {
                 try
@@ -108,6 +154,24 @@ namespace MovieBlog_Backend.Services.Implementations
                 }
             }
             else return new ResponseDTO() { Code = 400, Message = "Not found movielist or movie or list to watch", Status = "Failed" };
+        }
+
+        public MovieLists GetMovieLists()
+        {
+            var resutl = context.MoviesList.ToList();
+
+            MovieLists list = new MovieLists();
+            list.movieLists = new List<MovieList>();
+
+            foreach(var item in resutl)
+            {
+                var listToWatch = context.ToWatch.FirstOrDefault(t => t.Id == item.ListId);
+
+                var movie = context.Movies.FirstOrDefault(m => m.Id == item.MovieId);
+
+                list.movieLists.Add(new MovieList() { ListId = item.ListId, MovieId = item.MovieId});
+            }
+            return list;
         }
     }
 }

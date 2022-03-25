@@ -108,19 +108,19 @@ namespace MovieBlog_Backend.Services.Implementations
 
         public MoviesDTO GetMoviesFromList(int listId)
         {
-            var result = context.MoviesList.FirstOrDefault(ml => ml.ListId == listId);
-            var operatingList = context.ToWatch.FirstOrDefault(t => t.Id == result.ListId);
-            if (operatingList != null)
+            var list = context.ToWatch.FirstOrDefault(t => t.Id == listId);
+            var result = context.MoviesList.Where(ml => ml.ListId == listId).ToList();
+
+            if (list != null)
             {
                 try
                 {
                     MoviesDTO movies = new MoviesDTO();
                     movies.moviesList = new List<MovieDTO>();
 
-                    var movieList = operatingList.MoviesLists.ToList();
-                    foreach (MovieList movie in movieList)
+                    foreach (MovieList item in list.MoviesLists)
                     {
-                        var movieToRead = context.Movies.FirstOrDefault(m => m.Id == movie.MovieId);
+                        var movieToRead = context.Movies.FirstOrDefault(m => m.Id == item.MovieId);
                         movies.moviesList.Add(new MovieDTO { Id = movieToRead.Id, Category = movieToRead.Category, Title = movieToRead.Title, Image = movieToRead.Image });
                     }
                     return movies;

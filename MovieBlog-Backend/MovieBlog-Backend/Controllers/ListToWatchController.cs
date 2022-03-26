@@ -4,7 +4,7 @@ using MovieBlog_Backend.Services.Interfaces;
 
 namespace MovieBlog_Backend.Controllers
 {
-    [Route("[controller]/[action]")]
+    /*[Route("[controller]/[action]")]
     public class ListToWatchController: Controller
     {
         private readonly IListToWatchSrv listToWatchSrv;
@@ -39,5 +39,5 @@ namespace MovieBlog_Backend.Controllers
         {
             return Ok(listToWatchSrv.GetAllLists());
         }
-    }
+    }*/
 }

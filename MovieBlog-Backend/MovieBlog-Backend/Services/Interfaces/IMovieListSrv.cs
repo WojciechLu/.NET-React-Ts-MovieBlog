@@ -5,9 +5,10 @@ namespace MovieBlog_Backend.Services.Interfaces
 {
     public interface IMovieListSrv
     {
-        ResponseDTO AddMovieToList(int movieId, int listId);
-        ResponseDTO RemoveMovieFromList(int movieId, int listId);
+        ResponseDTO AddMovieToList(AddMovieListDTO addMovieList);
+        ResponseDTO RemoveMovieFromList(AddMovieListDTO addMovieList);
         MoviesDTO GetMoviesFromList(int listId);
         MovieLists GetMovieLists();
+        MoviesDTO GetMoviesFromListByCategory(MovieListCategoryDTO movieCategory);
     }
 }

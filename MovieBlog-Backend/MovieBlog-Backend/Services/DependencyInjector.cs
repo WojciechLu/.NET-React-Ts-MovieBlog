@@ -14,6 +14,6 @@ namespace MovieBlog_Backend.Services
             serviceCollection.AddScoped<IUserSrv, UserSrv>();
             serviceCollection.AddScoped<IMovieSrv, MovieSrv>();
             serviceCollection.AddScoped<IMovieListSrv, MovieListSrv>();
-            serviceCollection.AddScoped<IListToWatchSrv, ListToWatchSrv>();
+            serviceCollection.AddScoped<IReviewSrv, ReviewSrv>();
         }
     }}

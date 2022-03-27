@@ -1,7 +1,8 @@
-﻿namespace MovieBlog_Backend.Models.ModelsDTO.Review
+﻿namespace MovieBlog_Backend.Models.ModelsDTO
 {
-    public class AddReviewDTO
+    public class ReviewDTO
     {
+        public int Id { get; set; }
         public int AuthorId { get; set; }
         public int MovieId { get; set; }
         public string Description { get; set; }

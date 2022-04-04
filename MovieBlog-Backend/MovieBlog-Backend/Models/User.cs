@@ -1,6 +1,8 @@
-﻿namespace MovieBlog_Backend.Models
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace MovieBlog_Backend.Models
 {
-    public class User
+    public class User : IdentityUser
     {
         public int Id { get; set; }
         public int IdListToWatch { get; set; }

@@ -2,6 +2,7 @@
 using MovieBlog_Backend.Models;
 using MovieBlog_Backend.Models.ModelsDTO;
 using MovieBlog_Backend.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace MovieBlog_Backend.Services.Implementations
 {
@@ -20,10 +21,10 @@ namespace MovieBlog_Backend.Services.Implementations
                 var listId = addMovieList.listId;
                 var movieId = addMovieList.movieId;
 
-                var result = context.MoviesList.FirstOrDefault(ml => ml.ListId == listId || ml.MovieId == movieId);
-                var listToCheck = context.ToWatch.FirstOrDefault(t => t.Id == listId);
-                var movieToCheck = context.Movies.FirstOrDefault(m => m.Id == movieId);
-                if (listToCheck != null && movieToCheck != null)
+                var result = context.MoviesList.Include(ml => ml.List).Include(ml => ml.Movie).FirstOrDefault(ml => ml.ListId == listId || ml.MovieId == movieId);
+/*                var listToCheck = context.ToWatch.FirstOrDefault(t => t.Id == listId);
+                var movieToCheck = context.Movies.FirstOrDefault(m => m.Id == movieId);*/
+                if (result != null)
                 {
                     try
                     {
@@ -32,10 +33,10 @@ namespace MovieBlog_Backend.Services.Implementations
                         {
                             var newMovieList = new MovieList
                             {
-                                List = listToCheck,
-                                ListId = listToCheck.Id,
-                                Movie = movieToCheck,
-                                MovieId = movieToCheck.Id
+                                List = result.List,
+                                ListId = result.ListId,
+                                Movie = result.Movie,
+                                MovieId = result.MovieId
                             };
                             var listToUpdate = context.ToWatch.FirstOrDefault(l => l.Id == listId);
                             if (listToUpdate.MoviesLists == null)
@@ -68,17 +69,16 @@ namespace MovieBlog_Backend.Services.Implementations
 
         public MoviesDTO GetMoviesFromList(int listId)
         {
-            var list = context.ToWatch.FirstOrDefault(t => t.Id == listId);
-            var result = context.MoviesList.Where(ml => ml.ListId == listId).ToList();
+            var result = context.MoviesList.Include(ml=>ml.List).Where(ml => ml.ListId == listId).ToList();
 
-            if (list != null)
+            if (result != null)
             {
                 try
                 {
                     MoviesDTO movies = new MoviesDTO();
                     movies.moviesList = new List<MovieDTO>();
 
-                    foreach (MovieList item in list.MoviesLists)
+                    foreach (MovieList item in result)
                     {
                         var movieToRead = context.Movies.FirstOrDefault(m => m.Id == item.MovieId);
                         movies.moviesList.Add(new MovieDTO { Id = movieToRead.Id, Category = movieToRead.Category, Title = movieToRead.Title, Image = movieToRead.Image });
@@ -100,15 +100,16 @@ namespace MovieBlog_Backend.Services.Implementations
                 var listId = addMovieList.listId;
                 var movieId = addMovieList.movieId;
 
-                var movieList = context.MoviesList.FirstOrDefault(ml => ml.MovieId == movieId && ml.ListId == listId);
-                var movieToRemove = context.Movies.FirstOrDefault(m => m.Id == movieId);
-                var listToWatch = context.ToWatch.FirstOrDefault(l => l.Id == listId);
-                if ((movieList != null) && (movieToRemove != null) && (listToWatch != null))
+                var movieList = context.MoviesList
+                    .Include(ml => ml.List)
+                    .Include(ml => ml.Movie)
+                    .FirstOrDefault(ml => ml.MovieId == movieId && ml.ListId == listId);
+                if ((movieList != null) && (movieList.List != null) && (movieList.Movie != null))
                 {
                     try
                     {
-                        movieToRemove.MovieLists.Remove(movieList);
-                        listToWatch.MoviesLists.Remove(movieList);
+                        movieList.Movie.MovieLists.Remove(movieList);
+                        movieList.List.MoviesLists.Remove(movieList);
                         context.MoviesList.Remove(movieList);
                         context.SaveChanges();
                         return new ResponseDTO() { Code = 200, Message = "Removed movie from list", Status = "Success" };
@@ -146,7 +147,7 @@ namespace MovieBlog_Backend.Services.Implementations
             {
                 var listId = movieCategory.listId;
                 var list = context.ToWatch.FirstOrDefault(t => t.Id == listId);
-                var result = context.MoviesList.Where(ml => ml.ListId == listId).ToList();
+                var result = context.MoviesList.Include(ml=>ml.List).Where(ml => ml.ListId == listId).ToList();
 
                 if (list != null)
                 {

@@ -1,5 +1,0 @@
-D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog.Common.Domain\obj\Debug\net6.0\MovieBlog.Domain.Common.csproj.AssemblyReference.cache
-D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog.Common.Domain\obj\Debug\net6.0\MovieBlog.Domain.Common.GeneratedMSBuildEditorConfig.editorconfig
-D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog.Common.Domain\obj\Debug\net6.0\MovieBlog.Domain.Common.AssemblyInfoInputs.cache
-D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog.Common.Domain\obj\Debug\net6.0\MovieBlog.Domain.Common.AssemblyInfo.cs
-D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog.Common.Domain\obj\Debug\net6.0\MovieBlog.Domain.Common.csproj.CoreCompileInputs.cache

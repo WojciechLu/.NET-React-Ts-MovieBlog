@@ -1,0 +1,5 @@
+D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog-Backend\MovieBlog.Domain.Facades\obj\Debug\net6.0\MovieBlog.Domain.Facades.csproj.AssemblyReference.cache
+D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog-Backend\MovieBlog.Domain.Facades\obj\Debug\net6.0\MovieBlog.Domain.Facades.GeneratedMSBuildEditorConfig.editorconfig
+D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog-Backend\MovieBlog.Domain.Facades\obj\Debug\net6.0\MovieBlog.Domain.Facades.AssemblyInfoInputs.cache
+D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog-Backend\MovieBlog.Domain.Facades\obj\Debug\net6.0\MovieBlog.Domain.Facades.AssemblyInfo.cs
+D:\Programowanie\GitHub\.NET-React-Ts-MovieBlog\MovieBlog-Backend\MovieBlog.Domain.Facades\obj\Debug\net6.0\MovieBlog.Domain.Facades.csproj.CoreCompileInputs.cache

@@ -1,4 +1,4 @@
-namespace MovieBlog_Backend.Models
+namespace MovieBlog.Common.Domain.Models
 {
     public class ErrorViewModel
     {

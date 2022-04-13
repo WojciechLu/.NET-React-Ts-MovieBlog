@@ -1,54 +1,53 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieBlog_Backend.Models.ModelsDTO;
-using MovieBlog_Backend.Services.Interfaces;
+using MovieBlog.Domain.Common.Models.ModelsDTO;
+using MovieBlog.Domain.Interfaces.Facades;
 
-namespace MovieBlog_Backend.Controllers
+namespace MovieBlog_Backend.Controllers;
+
+[Route("[controller]/[action]")]
+public class MovieController : Controller
 {
-    [Route("[controller]/[action]")]
-    public class MovieController : Controller
+    private readonly IMovieFcd movieFcd;
+    public MovieController(IMovieFcd movieFcd)
     {
-        private readonly IMovieSrv movieSrv;
-        public MovieController(IMovieSrv movieSrv)
-        {
-            this.movieSrv = movieSrv;
-        }
+        this.movieFcd = movieFcd;
+    }
 
-        [HttpGet]
-        public ActionResult GetAllMovies()
-        {
-            return Ok(movieSrv.GetAllMovies());
-        }
+    [HttpGet]
+    public ActionResult GetAllMovies()
+    {
+        return Ok(movieFcd.GetAllMovies());
+    }
 
-        [HttpGet]
-        [Route("{title}")]
-        public ActionResult GetMovieByTitle([FromRoute] string title)
-        {
-            return Ok(movieSrv.GetMovieByTitle(title));
-        }
+    [HttpGet]
+    [Route("{title}")]
+    public ActionResult GetMovieByTitle([FromRoute] string title)
+    {
+        return Ok(movieFcd.GetMovieByTitle(title));
+    }
 
-        [HttpGet]
-        [Route("{category}")]
-        public ActionResult GetMoviesByCat([FromRoute] string category)
-        {
-            return Ok(movieSrv.GetMoviesByCat(category));
-        }
+    [HttpGet]
+    [Route("{category}")]
+    public ActionResult GetMoviesByCat([FromRoute] string category)
+    {
+        return Ok(movieFcd.GetMoviesByCat(category));
+    }
 
-        [HttpPost]
-        public ActionResult AddMovie([FromBody] MovieDTO movie)
-        {
-            return Ok(movieSrv.AddMovie(movie));
-        }
+    [HttpPost]
+    public ActionResult AddMovie([FromBody] MovieDTO movie)
+    {
+        return Ok(movieFcd.AddMovie(movie));
+    }
 
-        [HttpPut]
-        public ActionResult EditMovie([FromBody] MovieDTO movie)
-        {
-            return Ok(movieSrv.EditMovie(movie));
-        }
+    [HttpPut]
+    public ActionResult EditMovie([FromBody] MovieDTO movie)
+    {
+        return Ok(movieFcd.EditMovie(movie));
+    }
 
-        [HttpDelete]
-        public ActionResult DeleteMovie([FromBody] MovieDTO movie)
-        {
-            return Ok(movieSrv.DeleteMovie(movie));
-        }
+    [HttpDelete]
+    public ActionResult DeleteMovie([FromBody] MovieDTO movie)
+    {
+        return Ok(movieFcd.DeleteMovie(movie));
     }
 }

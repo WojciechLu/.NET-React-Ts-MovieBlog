@@ -1,52 +1,51 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieBlog_Backend.Models.ModelsDTO;
-using MovieBlog_Backend.Services.Interfaces;
+using MovieBlog.Domain.Common.Models.ModelsDTO;
+using MovieBlog.Domain.Interfaces.Facades;
 
-namespace MovieBlog_Backend.Controllers
+namespace MovieBlog_Backend.Controllers;
+
+[Route("[controller]/[action]")]
+public class MovieListController: Controller
 {
-    [Route("[controller]/[action]")]
-    public class MovieListController: Controller
+    private readonly IMovieListFcd movieListFcd;
+    public MovieListController(IMovieListFcd movieListFcd)
     {
-        private readonly IMovieListSrv movieListSrv;
-        public MovieListController(IMovieListSrv movieListSrv)
-        {
-            this.movieListSrv = movieListSrv;
-        }
+        this.movieListFcd = movieListFcd;
+    }
 
-        [HttpPost]
-        [Route("")]
-        public ActionResult AddMovieToList([FromBody] AddMovieListDTO addMovieList)
-        {
-            return Ok(movieListSrv.AddMovieToList(addMovieList));
-        }
+    [HttpPost]
+    [Route("")]
+    public ActionResult AddMovieToList([FromBody] AddMovieListDTO addMovieList)
+    {
+        return Ok(movieListFcd.AddMovieToList(addMovieList));
+    }
 
-        [HttpDelete]
-        [Route("")]
-        public ActionResult RemoveMovieFromList([FromBody] AddMovieListDTO addMovieList)
-        {
-            return Ok(movieListSrv.RemoveMovieFromList(addMovieList));
-        }
+    [HttpDelete]
+    [Route("")]
+    public ActionResult RemoveMovieFromList([FromBody] AddMovieListDTO addMovieList)
+    {
+        return Ok(movieListFcd.RemoveMovieFromList(addMovieList));
+    }
 
-        [HttpGet]
-        [Route("{listId}")]
-        public ActionResult GetMoviesFromList([FromRoute] int listId)
-        {
-            return Ok(movieListSrv.GetMoviesFromList(listId));
-        }
+    [HttpGet]
+    [Route("{listId}")]
+    public ActionResult GetMoviesFromList([FromRoute] int listId)
+    {
+        return Ok(movieListFcd.GetMoviesFromList(listId));
+    }
 
-        [HttpGet]
-        /*[Route("{listId}")]*/
-        [Route("")]
-        public ActionResult GetMoviesFromListByCategory([FromQuery] MovieListCategoryDTO movieCategory)
-        {
-            return Ok(movieListSrv.GetMoviesFromListByCategory(movieCategory));
-        }
+    [HttpGet]
+    /*[Route("{listId}")]*/
+    [Route("")]
+    public ActionResult GetMoviesFromListByCategory([FromQuery] MovieListCategoryDTO movieCategory)
+    {
+        return Ok(movieListFcd.GetMoviesFromListByCategory(movieCategory));
+    }
 
-        [HttpGet]
-        [Route("")]
-        public ActionResult GetMovieList()
-        {
-            return Ok(movieListSrv.GetMovieLists());
-        }
+    [HttpGet]
+    [Route("")]
+    public ActionResult GetMovieList()
+    {
+        return Ok(movieListFcd.GetMovieLists());
     }
 }

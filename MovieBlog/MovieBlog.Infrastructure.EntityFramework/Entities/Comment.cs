@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MovieBlog.Infrastructure.
-    .Entities;
+namespace MovieBlog.Infrastructure.EntityFramework.Entities;
 
 public class Comment
 {

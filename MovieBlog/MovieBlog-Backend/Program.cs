@@ -5,9 +5,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-//builder.Services.AddDependency(builder.Configuration);
-
-builder.Services.AddMvc();
+builder.Services.AddDependency(builder.Configuration);
 
 var app = builder.Build();
 
@@ -16,7 +14,6 @@ if (!app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-
 }
 
 app.UseHttpsRedirection();

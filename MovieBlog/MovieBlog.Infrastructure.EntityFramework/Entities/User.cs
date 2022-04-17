@@ -1,4 +1,4 @@
-﻿using MovieBlog.Infrastructure.EntityFramework;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace MovieBlog.Infrastructure.EntityFramework
 {

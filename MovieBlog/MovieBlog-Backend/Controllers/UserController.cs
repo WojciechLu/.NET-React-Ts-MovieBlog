@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MovieBlog_Backend.Data;
-using MovieBlog_Backend.Models;
-using MovieBlog_Backend.Models.ModelsDTO;
-using MovieBlog_Backend.Services.Implementations;
-using MovieBlog_Backend.Services.Interfaces;
+using MovieBlog.Domain.Common.Models.ModelsDTO;
+using MovieBlog.Domain.Interfaces.Infrastructure;
 
 namespace MovieBlog_Backend.Controllers
 {

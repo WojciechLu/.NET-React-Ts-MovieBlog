@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieBlog.Infrastructure.EntityFramework", "MovieBlog.Infrastructure.EntityFramework\MovieBlog.Infrastructure.EntityFramework.csproj", "{572A5F56-C2FF-4CC0-8E67-E872F31072F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MovieBlog.Domain.Common", "MovieBlog.Domain.Common\MovieBlog.Domain.Common.csproj", "{B1D3209F-3695-48EF-80DE-F94F6EFD7DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MovieBlog.Domain.Common", "MovieBlog.Domain.Common\MovieBlog.Domain.Common.csproj", "{B1D3209F-3695-48EF-80DE-F94F6EFD7DB5}"
 EndProject
 Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "movieblog-react", "movieblog-react\movieblog-react.esproj", "{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}"
 EndProject
@@ -61,7 +61,6 @@ Global
 		{B1D3209F-3695-48EF-80DE-F94F6EFD7DB5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AF5BE59A-5D5F-4E5A-8E87-B95FA7834857}.Release|Any CPU.Deploy.0 = Release|Any CPU

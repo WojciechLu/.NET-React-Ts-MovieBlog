@@ -5,6 +5,7 @@ using MovieBlog.Domain.Facades;
 using MovieBlog.Domain.Interfaces.Facades;
 using MovieBlog.Domain.Interfaces.Infrastructure;
 using MovieBlog.Infrastructure.EntityFramework;
+using MovieBlog.Infrastructure.EntityFramework.Entities;
 
 namespace MovieBlog.Domain.DI;
 

@@ -1,5 +1,6 @@
 ﻿using MovieBlog.Domain.Common.Models.ModelsDTO;
 using MovieBlog.Domain.Interfaces.Infrastructure;
+using MovieBlog.Infrastructure.EntityFramework.Entities;
 
 namespace MovieBlog.Infrastructure.EntityFramework;
 

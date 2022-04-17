@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using MovieBlog.Infrastructure.EntityFramework.Entities;
 
 namespace MovieBlog.Infrastructure.EntityFramework
 {

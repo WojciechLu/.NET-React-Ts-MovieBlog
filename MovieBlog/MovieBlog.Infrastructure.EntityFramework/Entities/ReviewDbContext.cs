@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace MovieBlog.Infrastructure.EntityFramework;
+namespace MovieBlog.Infrastructure.EntityFramework.Entities;
 
 public class ReviewDbContext : DbContext
 {

@@ -1,4 +1,4 @@
-﻿namespace MovieBlog.Infrastructure.EntityFramework;
+﻿namespace MovieBlog.Infrastructure.EntityFramework.Entities;
 
 public class Review
 {
@@ -9,4 +9,5 @@ public class Review
     public int Assessment { get; set; }
     public Movie RatedMovie { get; set; }
     public User Author { get; set; }
+    public ICollection<Comment> Comments { get; set; }
 }

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
 
-namespace MovieBlog.Infrastructure.EntityFramework
+namespace MovieBlog.Infrastructure.EntityFramework.Entities
 {
     public class User : IdentityUser
     {
@@ -9,7 +9,8 @@ namespace MovieBlog.Infrastructure.EntityFramework
         public string Email { get; set; }
         public string Name { get; set; }
         public string Password { get; set; }
-        public IList<Review> Reviews { get; set; }
+        public ICollection<Comment> Comments { get; set; }
+        public ICollection<Review> Reviews { get; set; }
         public ListToWatch ToWatch { get; set; }
     }
 }

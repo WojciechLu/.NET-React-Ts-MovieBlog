@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace MovieBlog.Infrastructure.EntityFramework.Entities
+﻿namespace MovieBlog.Infrastructure.EntityFramework.Entities
 {
-    public class User : IdentityUser
+    public class User
     {
         public int Id { get; set; }
         public int IdListToWatch { get; set; }

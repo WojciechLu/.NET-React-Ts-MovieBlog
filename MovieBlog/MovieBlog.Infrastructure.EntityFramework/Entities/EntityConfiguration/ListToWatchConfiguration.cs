@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MovieBlog.Infrastructure.EntityFramework.Entities;
 
-namespace MovieBlog.Infrastructure.EntityFramework
+namespace MovieBlog.Infrastructure.EntityFramework.Entities.EntityConfiguration;
+
+public class ListToWatchConfiguration : IEntityTypeConfiguration<ListToWatch>
 {
-    public class ListToWatchConfiguration : IEntityTypeConfiguration<ListToWatch>
+    public void Configure(EntityTypeBuilder<ListToWatch> entity)
     {
-        public void Configure(EntityTypeBuilder<ListToWatch> entity)
-        {
-            entity.HasKey(l => l.Id);
-        }
+        entity.HasKey(l => l.Id);
     }
 }

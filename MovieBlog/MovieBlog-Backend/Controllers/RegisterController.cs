@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MovieBlog.Domain.Common.Models.ModelsDTO;
 using MovieBlog.Infrastructure.EntityFramework;
+using MovieBlog.Infrastructure.EntityFramework.Entities;
 
 namespace MovieBlog_Backend.Controllers
 {
